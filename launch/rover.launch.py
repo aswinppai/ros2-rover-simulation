@@ -52,4 +52,13 @@ def generate_launch_description():
             output='screen'
         ),
 
+
+	#KEY board shotcut
+Node(
+    package='teleop_twist_keyboard',
+    executable='teleop_twist_keyboard',
+    output='screen',
+    prefix='xterm -e'
+),
+
     ])
