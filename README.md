@@ -19,20 +19,37 @@ The rover can be driven using **keyboard teleoperation** and demonstrates a basi
 
 ---
 
-# 3. Project Structure
+3. Project Structure
 
-```
-ros2_ws/
- ├── src/
- │   └── rover_sim/
- │       ├── launch/
- │       │   └── rover.launch.py
- │       ├── urdf/
- │       │   └── rover.urdf
- │       ├── package.xml
- │       ├── setup.py
- │       └── resource/
-```
+The repository contains a ROS2 package named "rover_sim".
+This package includes the robot model, launch files, and configuration required to simulate the rover in Gazebo.
+
+rover_sim/
+├── launch/
+│   └── rover.launch.py
+├── urdf/
+│   └── rover.urdf
+├── resource/
+├── rover_sim/
+│   └── __init__.py
+├── test/
+├── package.xml
+├── setup.cfg
+├── setup.py
+└── README.md
+
+Folder Description
+
+Folder/File| Description
+"launch/"| Contains ROS2 launch files used to start the simulation
+"urdf/"| Contains the URDF robot model definition
+"resource/"| ROS2 package resource identifier
+"rover_sim/"| Python module for the ROS2 package
+"test/"| Test scripts for the package
+"package.xml"| ROS2 package metadata and dependencies
+"setup.py"| Python package configuration
+"setup.cfg"| Package build configuration
+"README.md"| Documentation and usage instructions
 
 ---
 
