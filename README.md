@@ -1,4 +1,4 @@
-# 🚀 ROS2 Rover Simulation (Gazebo)
+# ROS2 Rover Simulation (Gazebo)
 
 ## 1. Project Overview
 This project implements a **4-wheel rover simulation using ROS2 and Gazebo**.  
