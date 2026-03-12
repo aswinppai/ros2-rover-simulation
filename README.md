@@ -1,29 +1,26 @@
-# ROS2 Rover Simulation (Gazebo)
+# 🚀 ROS2 Rover Simulation (Gazebo)
 
 ## 1. Project Overview
+This project implements a **4-wheel rover simulation using ROS2 and Gazebo**.  
+The rover is modeled in **URDF**, spawned into Gazebo, and controlled via **ROS2 topics (`/cmd_vel`)**.
 
-This project implements a **4-wheel rover simulation using ROS2 and Gazebo**.
-The rover is modeled using **URDF**, spawned into Gazebo, and controlled using **ROS2 topics (`/cmd_vel`)**.
-
-The rover can be driven using **keyboard teleoperation** and demonstrates a basic **robotics simulation pipeline**.
-
----
-
-# 2. Technologies Used
-
-* ROS2 Humble
-* Gazebo 11
-* URDF (Robot Description)
-* Python Launch Files
-* teleop_twist_keyboard
+The rover can be driven using **keyboard teleoperation**, demonstrating a basic **robotics simulation pipeline**.
 
 ---
 
-3. Project Structure
+## 2. Technologies Used
+- ROS2 Humble  
+- Gazebo 11  
+- URDF (Robot Description)  
+- Python Launch Files  
+- teleop_twist_keyboard  
 
-The repository contains a ROS2 package named "rover_sim".
-This package includes the robot model, launch files, and configuration required to simulate the rover in Gazebo.
+---
 
+## 3. Project Structure
+The repository contains a ROS2 package named **`rover_sim`**.
+
+```
 rover_sim/
 ├── launch/
 │   └── rover.launch.py
@@ -37,39 +34,41 @@ rover_sim/
 ├── setup.cfg
 ├── setup.py
 └── README.md
+```
 
-Folder Description
+### Folder Description
 
-Folder/File| Description
-"launch/"| Contains ROS2 launch files used to start the simulation
-"urdf/"| Contains the URDF robot model definition
-"resource/"| ROS2 package resource identifier
-"rover_sim/"| Python module for the ROS2 package
-"test/"| Test scripts for the package
-"package.xml"| ROS2 package metadata and dependencies
-"setup.py"| Python package configuration
-"setup.cfg"| Package build configuration
-"README.md"| Documentation and usage instructions
+| Folder/File | Description |
+|-------------|-------------|
+| launch/ | ROS2 launch files to start the simulation |
+| urdf/ | URDF robot model definition |
+| resource/ | ROS2 package resource identifier |
+| rover_sim/ | Python module for the ROS2 package |
+| test/ | Test scripts for the package |
+| package.xml | ROS2 package metadata and dependencies |
+| setup.py | Python package configuration |
+| setup.cfg | Package build configuration |
+| README.md | Documentation and usage instructions |
 
 ---
 
-# 4. Robot Model
+## 4. Robot Model
 
-The rover consists of:
+The rover consists of the following links:
 
-* `base_link` → robot body
-* `front_left_wheel`
-* `front_right_wheel`
-* `rear_left_wheel`
-* `rear_right_wheel`
+- `base_link` → robot body  
+- `front_left_wheel`  
+- `front_right_wheel`  
+- `rear_left_wheel`  
+- `rear_right_wheel`  
 
 All wheels are connected using **continuous joints**.
 
-The rover movement is controlled using the **Gazebo Diff Drive Plugin**.
+Movement is controlled using the **Gazebo Differential Drive Plugin**.
 
 ---
 
-# 5. Launch File
+## 5. Launch File
 
 Main launch file:
 
@@ -77,77 +76,79 @@ Main launch file:
 launch/rover.launch.py
 ```
 
-This launch file performs the following tasks:
+This launch file performs the following:
 
-1. Kills old Gazebo processes
-2. Starts Gazebo with ROS plugin
-3. Publishes robot state using `robot_state_publisher`
-4. Spawns the rover model
-5. Starts keyboard teleoperation
+1. Kills old Gazebo processes  
+2. Starts Gazebo with ROS plugins  
+3. Publishes robot state using `robot_state_publisher`  
+4. Spawns the rover model in Gazebo  
+5. Starts keyboard teleoperation  
 
 ---
 
-# 6. How the System Works
+## 6. System Workflow
 
+```
 Keyboard Input
-↓
+      ↓
 teleop_twist_keyboard
-↓
-`/cmd_vel` topic
-↓
+      ↓
+    /cmd_vel
+      ↓
 Gazebo Diff Drive Plugin
-↓
+      ↓
 Wheel joints rotate
-↓
+      ↓
 Rover moves in simulation
+```
 
 ---
 
-# 7. Installation
+## 7. Installation
 
 Clone the repository:
 
-```
+```bash
 git clone https://github.com/aswinppai/ros2-rover-simulation.git
 ```
 
-Move to workspace:
+Move to your ROS2 workspace:
 
-```
+```bash
 cd ros2_ws
 ```
 
 Build the workspace:
 
-```
+```bash
 colcon build
 ```
 
-Source ROS environment:
+Source the workspace:
 
-```
+```bash
 source install/setup.bash
 ```
 
 ---
 
-# 8. Running the Simulation
+## 8. Running the Simulation
 
 Start the rover simulation:
 
-```
+```bash
 ros2 launch rover_sim rover.launch.py
 ```
 
-This will start:
+This will launch:
 
-* Gazebo simulator
-* Robot model
-* Keyboard teleoperation
+- Gazebo simulator  
+- Rover robot model  
+- Keyboard teleoperation  
 
 ---
 
-# 9. Keyboard Controls
+## 9. Keyboard Controls
 
 ```
 i  → move forward
@@ -167,7 +168,7 @@ Control layout:
 
 ---
 
-# 10. ROS Topics Used
+## 10. ROS Topics Used
 
 Main control topic:
 
@@ -183,36 +184,38 @@ geometry_msgs/Twist
 
 Example manual command:
 
-```
+```bash
 ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.5}, angular: {z: 0.0}}"
 ```
 
 ---
 
-# 11. Key Files
+## 11. Key Files
 
-| File            | Purpose                       |
-| --------------- | ----------------------------- |
-| rover.urdf      | Robot model definition        |
+| File | Purpose |
+|------|--------|
+| rover.urdf | Robot model definition |
 | rover.launch.py | Launch Gazebo and spawn rover |
-| package.xml     | ROS2 package metadata         |
-| setup.py        | Python package configuration  |
+| package.xml | ROS2 package metadata |
+| setup.py | Python package configuration |
 
 ---
 
-# 12. Future Improvements
+## 12. Future Improvements
 
-Possible extensions for this project:
-
-* Add **camera sensor**
-* Add **LiDAR sensor**
-* Visualize robot in **RViz**
-* Implement **SLAM**
-* Add **autonomous navigation**
+- Add **Camera sensor**  
+- Add **LiDAR sensor**  
+- Visualize robot in **RViz**  
+- Implement **SLAM**  
+- Add **Autonomous navigation**
 
 ---
 
-# 13. Author
+## 13. Author
 
-Aswin P Pai
-CSE Student
+**Aswin P Pai**  
+CSE Student  
+
+---
+
+⭐ This project demonstrates a **basic robotics simulation pipeline using ROS2 and Gazebo**.
